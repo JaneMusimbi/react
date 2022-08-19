@@ -1,18 +1,16 @@
-// fetch API
-var greenkiosk= async () => {
-  try {
-     const fruits= await fetch("https://jsonplaceholder.typicode.com/Products");
-     if (fruits.ok) { // check for the 404 errors
-         throw new Error(fruits.status);
-     }
-     const json_data = await fruits.json();
-        console.log(json_data);
-     }
-     catch (error) { // catch block for network errors
-          console.log(error); 
-      }
-}
-fetchProducts();
+function loadJSONproducts(){
+    fetch('products.json')
+    .then(response => response.json())
+    .then(data => {
+        for(var q=0; q<data.length; q++){
+            document.getElementById("products").innerHTML += data[q].name +" :" +data[q].category
+        }
+        console.log(data)
+        document.querySelector("#fruList").innerText = data.category = "fruits"
+        // document.querySelector("#fruList").innerText = data
+        document.querySelector("#vegList").innerText = data
+    })
+   fetchProducts();
 
 
 
