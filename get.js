@@ -1,16 +1,47 @@
-function loadJSONproducts(){
-    fetch('products.json')
-    .then(response => response.json())
-    .then(data => {
-        for(var q=0; q<data.length; q++){
-            document.getElementById("products").innerHTML += data[q].name +" :" +data[q].category
-        }
-        console.log(data)
-        document.querySelector("#fruList").innerText = data.category = "fruits"
-        // document.querySelector("#fruList").innerText = data
-        document.querySelector("#vegList").innerText = data
-    })
-   fetchProducts();
+let products= document.getElementById("products")
+let fruits = document.getElementById('fruList')
+let vegetables= document.getElementById('vegList')
+document.getElementById("title").style.color="black";
+const baseUrl= 'http://localhost:5000';
+fetch(`${baseUrl}/products/fruits`)
+.then(response=>{
+   response.json()
+   .then(data=>{
+     console.log(data)
+      data.forEach(element => {
+          fruits.innerHTML += `<li>${element.name}</li>`
+      });
+   })
+})
+.catch(error=>{
+    console.log(error)
+})
+fetch(`${baseUrl}/products`)
+.then(response=>{
+   response.json()
+   .then(data=>{
+     console.log(data)
+      data.forEach(element => {
+          products.innerHTML += `<li>${element.name}</li>`
+      });
+   })
+})
+.catch(error=>{
+    console.log(error)
+})
+fetch(`${baseUrl}/products/vegetables`)
+.then(response=>{
+   response.json()
+   .then(data=>{
+     console.log(data)
+      data.forEach(element => {
+          vegetables.innerHTML += `<li>${element.name}</li>`
+      });
+   })
+})
+.catch(error=>{
+    console.log(error)
+})
 
 
 
